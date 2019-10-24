@@ -1,0 +1,12 @@
+.one-person-wrapper{
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px dashed black;
+    overflow: hidden;
+    div{  
+        p{
+            padding:  0 10px;
+            font-weight: bold;
+        }
+    }
+}

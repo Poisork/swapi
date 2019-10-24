@@ -1,0 +1,12 @@
+.wrapper-pagination{
+    display: flex;
+    p{
+        padding: 5px;
+        cursor: pointer;
+    }
+    .activePage{
+        padding: 0 5px 5px 5px;
+        color: orange;
+    }
+}
+
