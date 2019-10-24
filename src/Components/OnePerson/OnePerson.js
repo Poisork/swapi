@@ -1,16 +1,15 @@
 import React from 'react'
 import './OnePerson.scss'
 import {PropTypes as T} from 'prop-types'
-import { withTranslation } from 'react-i18next';
 
-const OnePerson = ({person,t}) => { 
+const OnePerson = ({person}) => { 
     
     return (
        <div className='one-person-wrapper'>
-           <div><p>{t('birth_year')}</p>{person.birth_year}</div>
-           <div><p>{t('created')}</p>{person.created}</div>
-           <div><p>{t('edited')}</p>{person.edited}</div>
-           <div><p>{t('eye_color')}</p>{person.eye_color}</div>
+           <div><p>birth_year</p>{person.birth_year}</div>
+           <div><p>created</p>{person.created}</div>
+           <div><p>edited</p>{person.edited}</div>
+           <div><p>eye_color</p>{person.eye_color}</div>
            <div><p>films</p>{person.films.toString()}</div>
            <div><p>gender</p>{person.gender}</div>
            <div><p>hair_color</p>{person.hair_color}</div>
@@ -31,4 +30,4 @@ OnePerson.propTypes = {
     person: T.object
 }
 
-export default React.memo(withTranslation()(OnePerson))
+export default React.memo(OnePerson)
