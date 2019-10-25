@@ -1,6 +1,7 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "SW",
+  "name": "swAPI",
+  "description": "Мои заметки по оптимизации сайта",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,8 +9,8 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "start_url": "https://poisork.github.io/swapi/",
+  "display": "fullscreen",
+  "theme_color": "#a2de66",
+  "background_color": "#faab19"
 }
