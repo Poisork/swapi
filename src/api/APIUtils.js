@@ -1,1 +1,1 @@
-export const RESOURCE = 'https://swapi.co/api' 
+export const RESOURCE = 'https://swapi.co/api'

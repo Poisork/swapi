@@ -1,12 +1,14 @@
-import {RESOURCE} from './APIUtils'
+/* eslint-disable no-useless-catch */
 import axios from 'axios'
-  
-export const getResource = async (query) => { 
-    try {
-        const res = await axios(`${RESOURCE}/${query}`)
-        return res
-    } catch (err) {  
-        console.error(err)
-        return err
-    }
-} 
+import {RESOURCE} from './APIUtils'
+
+export const getResource = async (query, myCancelToken) => {
+  try {
+    const res = await axios(`${RESOURCE}/${query}`, {
+      cancelToken: myCancelToken,
+    })
+    return res
+  } catch (err) {
+    throw err
+  }
+}
