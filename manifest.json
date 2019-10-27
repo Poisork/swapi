@@ -8,8 +8,8 @@
       "sizes": "512x512 256x256 192x192 64x64 48x48 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
-  ],
-  "start_url": "https://poisork.github.io/swapi/",
+  ], 
+  "use_url": "localhost",
   "display": "standalone",
   "theme_color": "#a2de66",
   "background_color": "#faab19"
