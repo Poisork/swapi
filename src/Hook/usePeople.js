@@ -15,11 +15,13 @@ export const usePeople = peopleQuery => {
     async function fetchData() {
       try {
         const res = await SWAPI.getTenEntities(peopleQuery, signal.token)
+        console.log(res)
         if (res.data) {
           const {data} = res
-          setIsLoading(null)
           setCount(data.count)
           setPeople(data.results)
+          setIsLoading(null)
+          setError(null)
         } else if (res.response) {
           setIsLoading(null)
           setError(`Error.Error status: ${res.response.status}`)

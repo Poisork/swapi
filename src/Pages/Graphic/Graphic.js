@@ -51,9 +51,8 @@ const Graphic = () => {
         activePage={page}
         pageSize={pageSize}
       />
-      {isLoading ? (
-        <Logo />
-      ) : (
+      {isLoading && <Logo />}
+      {!isLoading && !error && (
         <ChartJs
           height='600'
           type='line'

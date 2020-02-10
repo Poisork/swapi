@@ -17,10 +17,10 @@ const People = () => {
         activePage={page}
         pageSize={pageSize}
       />
-      {isLoading ? <Logo /> : null}
-      {people && !isLoading
-        ? people.map(person => <OnePerson key={person.url} person={person} />)
-        : null}
+      {isLoading && <Logo />}
+      {!isLoading &&
+        !error &&
+        people.map(person => <OnePerson key={person.url} person={person} />)}
       {error}
     </>
   )
