@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import {useState, useEffect} from 'react'
-import axios from 'axios'
-import {getResource} from '../api/SWAPI'
+import CancelToken, {handlerEventIsCancel} from '../services/api/cancelToken'
+import SWAPI from '../services/api/SWAPI'
 
 export const usePeople = peopleQuery => {
   const [error, setError] = useState(null)
@@ -11,10 +11,10 @@ export const usePeople = peopleQuery => {
 
   useEffect(() => {
     setIsLoading(true)
-    const signal = axios.CancelToken.source()
+    const signal = CancelToken.source()
     async function fetchData() {
       try {
-        const res = await getResource(peopleQuery, signal.token)
+        const res = await SWAPI.getTenEntities(peopleQuery, signal.token)
         if (res.data) {
           const {data} = res
           setIsLoading(null)
@@ -25,8 +25,8 @@ export const usePeople = peopleQuery => {
           setError(`Error.Error status: ${res.response.status}`)
         }
       } catch (e) {
-        if (axios.isCancel(e)) {
-          console.log('Error: ', e.message)
+        if (handlerEventIsCancel(e)) {
+          console.log('Message: ', e)
         } else {
           setIsLoading(null)
           setError(`Error:${e.message}`)
