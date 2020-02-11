@@ -9,11 +9,13 @@ i18n
     resources: {
       en: {
         translation: {
-          birth_year: 'birth_year',
-          created: 'created',
-          edited: 'edited',
-          eye_color: 'eye_color',
-          set_lang: 'set lang',
+          birth_year: 'Birth year',
+          // created: 'created',
+          // edited: 'edited',
+          eye_color: 'Eye color',
+          set_lang: 'Set lang',
+          // gender: 'gender',
+          // male: 'male',
         },
       },
       ru: {
@@ -23,6 +25,13 @@ i18n
           edited: 'изменено',
           eye_color: 'цвет глаз',
           set_lang: 'выбрать язык',
+          gender: 'пол',
+          male: 'мужской',
+          famale: 'женский',
+          name: 'Имя',
+          blue: 'Голубой',
+          yellow: 'Желтый',
+          'Luke Skywalker': 'Люик Скайвокер',
         },
       },
       debug: false,

@@ -1,14 +1,18 @@
-import React, {useState} from 'react'
-import {usePeople} from '../../Hook/usePeople'
+/* eslint-disable react/prop-types */
+import React from 'react'
 import {ReactComponent as Logo} from '../../media/Eclipse-1s-200px.svg'
 import OnePerson from '../../Components/OnePerson/OnePerson'
 import Pagination from '../../Components/Pagination/Pagination'
 
-const People = () => {
-  const [page, setPage] = useState(1)
-  const [isLoading, error, people, count] = usePeople(`people/?page=${page}`)
-  const pageSize = 10
-
+const People = ({
+  isLoading = true,
+  error = '',
+  people,
+  count,
+  page = 1,
+  setPage = () => {},
+  pageSize = 10,
+}) => {
   return (
     <>
       <Pagination
@@ -20,10 +24,11 @@ const People = () => {
       {isLoading && <Logo />}
       {!isLoading &&
         !error &&
+        people &&
         people.map(person => <OnePerson key={person.url} person={person} />)}
       {error}
     </>
   )
 }
 
-export default People
+export default React.memo(People)

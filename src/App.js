@@ -5,7 +5,7 @@ import Header from './Components/Header/Header'
 import {withSuspense} from './hoc/withSuspence'
 
 const Graphic = React.lazy(() => import('./Pages/Graphic/Graphic'))
-const People = React.lazy(() => import('./Pages/People/People'))
+const People = React.lazy(() => import('./Pages/People/PeopleContainer'))
 
 export const App = () => {
   return (

@@ -7,6 +7,10 @@ const OnePerson = ({person, t}) => {
   return (
     <div className='one-person-wrapper'>
       <div>
+        <p>{t('name')}</p>
+        {t(person.name)}
+      </div>
+      <div>
         <p>{t('birth_year')}</p>
         {person.birth_year}
       </div>
@@ -20,54 +24,50 @@ const OnePerson = ({person, t}) => {
       </div>
       <div>
         <p>{t('eye_color')}</p>
-        {person.eye_color}
+        {t(person.eye_color)}
       </div>
       <div>
-        <p>films</p>
+        <p>{t('films')}</p>
         {person.films.toString()}
       </div>
       <div>
-        <p>gender</p>
-        {person.gender}
+        <p>{t('gender')}</p>
+        {t(person.gender)}
       </div>
       <div>
-        <p>hair_color</p>
+        <p>{t('hair_color')}</p>
         {person.hair_color}
       </div>
       <div>
-        <p>height</p>
+        <p>{t('height')}</p>
         {person.height}
       </div>
       <div>
-        <p>homeworld</p>
+        <p>{t('homeworld')}</p>
         {person.homeworld}
       </div>
       <div>
-        <p>mass</p>
+        <p>{t('mass')}</p>
         {person.mass}
       </div>
       <div>
-        <p>name</p>
-        {person.name}
-      </div>
-      <div>
-        <p>skin_color</p>
+        <p>{t('skin_color')}</p>
         {person.skin_color}
       </div>
       <div>
-        <p>species</p>
+        <p>{t('species')}</p>
         {person.species.toString()}
       </div>
       <div>
-        <p>starships</p>
+        <p>{t('starships')}</p>
         {person.starships.toString()}
       </div>
       <div>
-        <p>url</p>
+        <p>{t('url')}</p>
         {person.url}
       </div>
       <div>
-        <p>vehicles</p>
+        <p>{t('vehicles')}</p>
         {person.vehicles.toString()}
       </div>
     </div>
