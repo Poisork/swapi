@@ -4,8 +4,8 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Header from './Components/Header/Header'
 import {withSuspense} from './hoc/withSuspence'
 
-const Graphic = React.lazy(() => import('./Pages/Graphic/Graphic'))
-const People = React.lazy(() => import('./Pages/People/PeopleContainer'))
+const Graphs = React.lazy(() => import('./Pages/Graphic/Graphs'))
+const Entity = React.lazy(() => import('./Pages/Entity/EntityContainer'))
 
 export const App = () => {
   return (
@@ -13,8 +13,8 @@ export const App = () => {
       <Header />
       <Switch>
         <Route exact path='/' render={() => <p>Main page</p>} />
-        <Route path='/people' render={withSuspense(People)} />
-        <Route path='/graphic' render={withSuspense(Graphic)} />
+        <Route path='/entity' render={withSuspense(Entity)} />
+        <Route path='/graphs' render={withSuspense(Graphs)} />
         <Route render={() => <p>Page not found</p>} />
       </Switch>
     </Router>

@@ -26,14 +26,14 @@ const Header = ({i18n, t = () => {}}) => {
         <ul className='navigation-list'>
           <li>
             <NavLink exact to='/'>
-              Root
-            </NavLink>{' '}
+              {t('Root')}
+            </NavLink>
           </li>
           <li>
-            <NavLink to='/people'>People</NavLink>
+            <NavLink to='/entity'>{t('Entities')}</NavLink>
           </li>
           <li>
-            <NavLink to='/graphic'>Graphic</NavLink>
+            <NavLink to='/graphs'>{t('Graphs')}</NavLink>
           </li>
         </ul>
       </nav>

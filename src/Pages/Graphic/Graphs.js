@@ -5,7 +5,7 @@ import {ReactComponent as Logo} from '../../media/Eclipse-1s-200px.svg'
 import Pagination from '../../Components/Pagination/Pagination'
 import ChartJs from './ChartJs'
 
-const Graphic = () => {
+const Graphs = () => {
   const [page, setPage] = useState(1)
   const [isLoading, error, people, count] = usePeople(`people/?page=${page}`)
 
@@ -65,4 +65,4 @@ const Graphic = () => {
   )
 }
 
-export default Graphic
+export default Graphs
