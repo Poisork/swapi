@@ -1,14 +1,15 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useRef} from 'react'
 import Chart from 'chart.js'
 import {PropTypes as T} from 'prop-types'
 import './ChartJs.scss'
 
 const ChartJs = ({height, type, labels, datasets}) => {
+  const ref = useRef()
   const options = {
     type,
     data: {
-      labels,
-      datasets,
+      labels: JSON.parse(labels),
+      datasets: JSON.parse(datasets),
     },
     options: {
       title: {
@@ -37,15 +38,14 @@ const ChartJs = ({height, type, labels, datasets}) => {
   }
 
   useEffect(() => {
-    const canvas = document.getElementById('canvas-1')
+    const canvas = ref.current
     const ctx = canvas.getContext('2d')
     const chart = new Chart(ctx, options)
     return () => chart.destroy()
-  }, [datasets, options])
-
+  }, [options])
   return (
     <div className='wrapper-chart'>
-      <canvas height={height} id='canvas-1' />
+      <canvas height={height} ref={ref} />
     </div>
   )
 }
@@ -53,14 +53,8 @@ const ChartJs = ({height, type, labels, datasets}) => {
 ChartJs.propTypes = {
   height: T.string,
   type: T.string,
-  labels: T.arrayOf(T.string),
-  datasets: T.arrayOf(
-    T.shape({
-      label: T.string,
-      backgroundColor: T.string,
-      data: T.arrayOf(T.string),
-    }),
-  ),
+  labels: T.string,
+  datasets: T.string,
 }
 
-export default ChartJs
+export default React.memo(ChartJs)

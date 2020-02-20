@@ -11,7 +11,6 @@ const People = ({
   people,
   count,
   page = 1,
-  setPage = () => {},
   pageSize = 10,
 }) => {
   const content = ({item, t}) => (
@@ -84,15 +83,9 @@ const People = ({
   )
 
   // const contentOnlyWithNames = ({item, t}) => <div>{t(item.name)}</div>
-
   return (
     <>
-      <Pagination
-        setPage={setPage}
-        count={count}
-        activePage={page}
-        pageSize={pageSize}
-      />
+      <Pagination count={count} activePage={page} pageSize={pageSize} />
       {isLoading && <Logo />}
       {!isLoading &&
         !error &&
@@ -109,4 +102,4 @@ const People = ({
   )
 }
 
-export default React.memo(People)
+export default People

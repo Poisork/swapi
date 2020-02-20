@@ -1,36 +1,41 @@
 /* eslint-disable no-console */
-import {useState, useEffect} from 'react'
+import {useReducer, useEffect} from 'react'
 import CancelToken, {handlerEventIsCancel} from '../services/api/cancelToken'
 import SWAPI from '../services/api/SWAPI'
+import reducer, {initialState} from './peopleReducer'
+import peopleAC from './actionCreators/peopleAC'
 
 export const usePeople = peopleQuery => {
-  const [error, setError] = useState('')
-  const [isLoading, setIsLoading] = useState(true)
-  const [count, setCount] = useState(null)
-  const [people, setPeople] = useState(null)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    setIsLoading(true)
     const signal = CancelToken.source()
     async function fetchData() {
+      dispatch(peopleAC.changeFetchingData(true))
       try {
         const res = await SWAPI.getTenEntities(peopleQuery, signal.token)
         if (res.data) {
           const {data} = res
-          setCount(data.count)
-          setPeople(data.results)
-          setIsLoading(false)
-          setError('')
+          dispatch(
+            peopleAC.setEntityData({
+              people: data.results,
+              count: data.count,
+              isLoading: false,
+              error: '',
+            }),
+          )
         } else if (res.status < 200) {
-          setIsLoading(false)
-          setError(`Error.Error status: ${res.response.status}`)
+          dispatch(peopleAC.changeFetchingData(false))
+          dispatch(
+            peopleAC.setError(`Error.Error status: ${res.response.status}`),
+          )
         }
       } catch (e) {
         if (handlerEventIsCancel(e)) {
           console.log('Message: ', e)
         } else {
-          setIsLoading(false)
-          setError(`Error:${e.message}`)
+          dispatch(peopleAC.changeFetchingData(false))
+          dispatch(peopleAC.setError(`Error:${e.message}`))
         }
       }
     }
@@ -40,5 +45,5 @@ export const usePeople = peopleQuery => {
     }
   }, [peopleQuery])
 
-  return [isLoading, error, people, count]
+  return [state, dispatch]
 }

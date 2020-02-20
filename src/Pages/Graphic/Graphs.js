@@ -1,14 +1,10 @@
-import React, {useState} from 'react'
-import {usePeople} from '../../Hook/usePeople'
+/* eslint-disable react/prop-types */
+import React from 'react'
 import {ReactComponent as Logo} from '../../media/Eclipse-1s-200px.svg'
-
 import Pagination from '../../Components/Pagination/Pagination'
 import ChartJs from './ChartJs'
 
-const Graphs = () => {
-  const [page, setPage] = useState(1)
-  const [isLoading, error, people, count] = usePeople(`people/?page=${page}`)
-
+const Graphs = ({page, isLoading, error, people, count}) => {
   const parsingPeople = people
     ? people.reduce((hash, {mass, height, name}) => {
         const validMass = mass.match(/\d/) ? mass.replace(',', '') : '0'
@@ -17,10 +13,10 @@ const Graphs = () => {
       }, [])
     : []
 
-  const parsingDataToChart = (label, bckColor, array, key) => {
+  const parsingDataToChart = (label, backgroundColor, array, key) => {
     return {
       label,
-      backgroundColor: bckColor,
+      backgroundColor,
       data: array.map(item => item[key]),
     }
   }
@@ -45,19 +41,14 @@ const Graphs = () => {
 
   return (
     <>
-      <Pagination
-        setPage={setPage}
-        count={count}
-        activePage={page}
-        pageSize={pageSize}
-      />
+      <Pagination count={count} activePage={page} pageSize={pageSize} />
       {isLoading && <Logo />}
-      {!isLoading && !error && (
+      {!isLoading && !error && people && (
         <ChartJs
           height='600'
           type='line'
-          labels={names}
-          datasets={arrayDataSets}
+          labels={JSON.stringify(names)}
+          datasets={JSON.stringify(arrayDataSets)}
         />
       )}
       {error}

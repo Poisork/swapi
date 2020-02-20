@@ -20,3 +20,11 @@ a{
 .active{
   color: green;
 }
+
+button{
+  cursor: pointer;
+}
+
+button:disabled{
+  cursor: not-allowed;
+}
