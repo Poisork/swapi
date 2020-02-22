@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import React from 'react'
-import {ReactComponent as Logo} from '../../media/Eclipse-1s-200px.svg'
-import Pagination from '../../Components/Pagination/Pagination'
+import React, {useContext} from 'react'
 import ChartJs from './ChartJs'
+import {PaginationContext} from '../../utils/context/context'
 
-const Graphs = ({page, isLoading, error, people, count}) => {
+const Graphs = () => {
+  const people = useContext(PaginationContext)
   const parsingPeople = people
     ? people.reduce((hash, {mass, height, name}) => {
         const validMass = mass.match(/\d/) ? mass.replace(',', '') : '0'
@@ -37,22 +37,14 @@ const Graphs = ({page, isLoading, error, people, count}) => {
   ]
 
   const names = parsingPeople.map(item => item.name)
-  const pageSize = 10
 
   return (
-    <>
-      <Pagination count={count} activePage={page} pageSize={pageSize} />
-      {isLoading && <Logo />}
-      {!isLoading && !error && people && (
-        <ChartJs
-          height='600'
-          type='line'
-          labels={JSON.stringify(names)}
-          datasets={JSON.stringify(arrayDataSets)}
-        />
-      )}
-      {error}
-    </>
+    <ChartJs
+      height='600'
+      type='line'
+      labels={JSON.stringify(names)}
+      datasets={JSON.stringify(arrayDataSets)}
+    />
   )
 }
 

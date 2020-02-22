@@ -1,17 +1,12 @@
-import React, {useReducer} from 'react'
-import {usePeople} from '../../Hook/usePeople'
-import Entity from './Entity'
-import paginatorReducer from '../../Hook/paginatorReducer'
-import {PageDispatch} from '../../utils/context/context'
+import React from 'react'
+import {Entities} from './Entities'
+import {PaginationLayout} from '../../layouts/paginationLayout'
 
 const PeopleContainer = () => {
-  const [{page}, dispatchPage] = useReducer(paginatorReducer, {page: 1})
-  const [state] = usePeople(`people/?page=${page}`)
-  const props = {...state, page}
   return (
-    <PageDispatch.Provider value={dispatchPage}>
-      <Entity {...props} />
-    </PageDispatch.Provider>
+    <PaginationLayout>
+      <Entities />
+    </PaginationLayout>
   )
 }
 

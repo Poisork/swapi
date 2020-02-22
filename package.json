@@ -3,6 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://poisork.github.io/swapi",
+  "scripts": {
+    "start": "PORT=2538 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "prettier": "prettier --write src/**/*.{js,jsx}",
+    "lint": "eslint --debug src/",
+    "lint:write": "eslint --debug src/ --fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(js|jsx)": [
+      "yarn lint:write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "chart.js": "^2.8.0",
@@ -15,17 +37,6 @@
     "react-i18next": "^10.13.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
-  },
-  "scripts": {
-    "start": "PORT=2536 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "prettier": "prettier --write src/**/*.{js,jsx}",
-    "lint": "eslint --debug src/",
-    "lint:write": "eslint --debug src/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -53,16 +64,5 @@
     "husky": "^3.0.9",
     "lint-staged": "^9.4.2",
     "prettier": "^1.18.2"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.(js|jsx)": [
-      "yarn lint:write",
-      "git add"
-    ]
   }
 }

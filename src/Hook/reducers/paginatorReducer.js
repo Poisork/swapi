@@ -1,11 +1,12 @@
-export const initialState = {
-  page: 1,
+export function init(initPage) {
+  return {
+    activePage: initPage,
+  }
 }
-
 export default (state, action) => {
   switch (action.type) {
     case 'CHANGE_PAGE':
-      return {...state, page: action.page}
+      return {...state, activePage: action.page}
     default:
       return state
   }

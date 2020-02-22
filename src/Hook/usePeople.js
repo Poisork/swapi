@@ -2,7 +2,7 @@
 import {useReducer, useEffect} from 'react'
 import CancelToken, {handlerEventIsCancel} from '../services/api/cancelToken'
 import SWAPI from '../services/api/SWAPI'
-import reducer, {initialState} from './peopleReducer'
+import reducer, {initialState} from './reducers/peopleReducer'
 import peopleAC from './actionCreators/peopleAC'
 
 export const usePeople = peopleQuery => {

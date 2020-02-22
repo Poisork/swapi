@@ -1,34 +1,35 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import './Pagination.scss'
 import {PropTypes as T} from 'prop-types'
-import {PageDispatch} from '../../utils/context/context'
 import paginatorAC from '../../Hook/actionCreators/paginatorAC'
 
-const Pagination = ({pageSize, count, activePage}) => {
-  const dispatch = useContext(PageDispatch)
-  return count ? (
+const Pagination = ({pageSize = 10, count, activePage, dispatch}) => {
+  return (
     <div className='wrapper-pagination'>
-      {[...Array(Math.ceil(count / pageSize))].map((item, index) => (
-        <button
-          type='submit'
-          // eslint-disable-next-line react/no-array-index-key
-          key={index}
-          disabled={index + 1 === activePage}
-          className={index + 1 === activePage ? 'activePage' : ''}
-          onClick={() => dispatch(paginatorAC.changePage(index + 1))}
-        >
-          {index + 1}
-        </button>
-      ))}
+      {[...Array(Math.ceil(count / pageSize))].map((item, index) => {
+        const pageIsActive = index + 1 === activePage
+        return (
+          <button
+            type='submit'
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            disabled={pageIsActive}
+            className={pageIsActive ? 'activePage' : ''}
+            onClick={() => dispatch(paginatorAC.changePage(index + 1))}
+          >
+            {index + 1}
+          </button>
+        )
+      })}
     </div>
-  ) : null
+  )
 }
 
 Pagination.propTypes = {
-  pageSize: T.number.isRequired,
+  pageSize: T.number,
   activePage: T.number.isRequired,
   count: T.number,
-  setPage: T.func,
+  dispatch: T.func,
 }
 
 export default React.memo(Pagination)
